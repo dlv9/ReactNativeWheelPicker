@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
@@ -11,6 +11,12 @@ interface Props {
 
 const WheelPicker: React.FC<Props> = props => {
   const [selectedItem, setSelectedItem] = useState(props.selectedItem || 0);
+  console.log(props.selectedItem);
+
+  useEffect(() => {
+    setSelectedItem(props.selectedItem || 0)
+  }, [props.selectedItem])
+
   const { data, onItemSelected, disabled } = props;
   if (!data || data.length === 0) return null;
   return (
